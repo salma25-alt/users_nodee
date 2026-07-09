@@ -15,13 +15,45 @@ router.post('/', async(req, res) => {
         const response = await newPerson.save();
 
         console.log("data is saved");
-        res.status(200).json(response)
+        return res.status(200).json(response)
         
     } catch (error) {
-        console.log(error)
-        res.status(500).json({error: "internal server error"})
-    }
+        // res.status(500).json({ 
+        //     error: "internal server error", 
+        //     details: error.message 
+        // });
+        console.log("❌ DATABASE ERROR:", err.message); // This prints the error in VS Code terminal
+        return res.status(500).json({ error: err.message });
+        }
 })
+
+
+// // POST route to add a person
+// router.post('/', async (req, res) => {
+//     console.log("--- 1. Postman successfully reached the route! ---");
+//     console.log("--- 2. Data received from Postman: ---", req.body);
+
+//     try {
+//         const data = req.body; 
+//         const newPerson = new Person(data); 
+        
+//         console.log("--- 3. Attempting to save to MongoDB... ---");
+//         const savedPerson = await newPerson.save(); 
+        
+//         console.log("--- 4. Successfully saved to database! Sending response back... ---");
+//         res.status(200).json(savedPerson); 
+
+//     } catch (err) {
+//         console.error("--- X. ERROR CAUGHT! ---", err);
+//         res.status(500).json({ error: 'Internal Server Error', details: err.message });
+//     }
+// });
+
+
+
+
+
+
 
 
 
@@ -88,7 +120,7 @@ router.put('/:id', async(req, res) => {
 
 router.delete('/:id', async(req, res) => {
     try {
-    id = req.params.id
+    const id = req.params.id
 
     const response = await Person.findByIdAndDelete(id)
 
