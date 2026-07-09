@@ -36,6 +36,6 @@ app.use('/persons', peopleRout)
 // })
 
 
-app.listen(3000, '0.0.0.0', () => {
+app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
     console.log("🚀 Server is wide awake and listening on port 3000!")
 })
