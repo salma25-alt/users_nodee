@@ -22,8 +22,8 @@ router.post('/', async(req, res) => {
         //     error: "internal server error", 
         //     details: error.message 
         // });
-        console.log("❌ DATABASE ERROR:", err.message); // This prints the error in VS Code terminal
-        return res.status(500).json({ error: err.message });
+        console.log("❌ DATABASE ERROR:", error.message); // This prints the error in VS Code terminal
+        return res.status(500).json({ error: error.message });
         }
 })
 
